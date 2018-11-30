@@ -1,0 +1,17 @@
+---
+  env:
+    MYSQL_HOSTNAME=mysql
+    MYSQL_USER=root
+    MYSQL_PASSWORD=password
+
+  services:
+    - docker
+
+  before_install:
+    - docker run -d --name ${MYSQL_HOSTNAME} -e MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD} -d mysql:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci
+
+  script:
+    - docker build -t mysql_client .
+    - docker run --rm mysql_client -help
+    - docker run --rm mysql_client -host ${MYSQL_HOSTNAME} -port 3306 -user ${MYSQL_USER} -password ${MYSQL_PASSWORD} -database mysql -query "show tables"
+    - docker rm -f ${MYSQL_HOSTNAME}

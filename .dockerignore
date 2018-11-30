@@ -1,0 +1,6 @@
+.git/
+.dockeringnore
+.travis.yml
+Dockerfile
+LICENSE
+README.md
