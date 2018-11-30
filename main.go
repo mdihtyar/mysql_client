@@ -56,7 +56,7 @@ func main() {
 			} else {
 				value = string(col)
 			}
-			fmt.Println(columns[i], ": ", value)
+			fmt.Println(columns[i], ":", value)
 		}
 	}
 	if err = rows.Err(); err != nil {
