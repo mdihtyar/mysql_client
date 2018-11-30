@@ -13,5 +13,5 @@
   script:
     - docker build -t mysql_client .
     - docker run --rm mysql_client -help
-    - docker run --rm mysql_client -host ${MYSQL_HOSTNAME} -port 3306 -user ${MYSQL_USER} -password ${MYSQL_PASSWORD} -database mysql -query "show tables"
+    - docker run --rm --link ${MYSQL_HOSTNAME}:${MYSQL_HOSTNAME} mysql_client -host ${MYSQL_HOSTNAME} -port 3306 -user ${MYSQL_USER} -password ${MYSQL_PASSWORD} -database mysql -query "show tables"
     - docker rm -f ${MYSQL_HOSTNAME}
